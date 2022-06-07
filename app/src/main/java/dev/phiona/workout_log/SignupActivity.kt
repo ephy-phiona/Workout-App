@@ -3,10 +3,15 @@ package dev.phiona.workout_log
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Patterns
+import android.util.Patterns.EMAIL_ADDRESS
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
+import androidx.core.util.PatternsCompat.EMAIL_ADDRESS
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import java.util.regex.Pattern
 
 class SignupActivity : AppCompatActivity() {
     lateinit var etFirst: TextInputEditText
@@ -57,12 +62,22 @@ class SignupActivity : AppCompatActivity() {
             if (email.isBlank()) {
                 tilEmail1.error = "Email is required?"
             }
+            if (!Patterns.EMAIL_ADDRESS.matcher(email). matches()){
+                tilEmail1.error="Invalid email"
+            }
             if (password1.isBlank()) {
                 tilPassword1.error = "Password is required?"
             }
-            if (password2.isBlank()) {
-                tilPassword2.error = "Password is required"
+//            if (password2.isBlank()) {
+//                tilPassword2.error = "Password is required"
+//            }
+            if (password2 !=password1){
+               tilPassword2.error="Unmatched password!"
             }
+            else{
+                Toast.makeText(applicationContext, "Confirmed password", Toast.LENGTH_SHORT).show()
+            }
+
             if (firstname.isBlank()) {
                 tilFirst.error = "First name is required"
             }
@@ -70,6 +85,7 @@ class SignupActivity : AppCompatActivity() {
                 tilSecond.error = "Second name is required"
             }
         }
+
     }
 
 
