@@ -34,7 +34,7 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
         }
         btnLogin.setOnClickListener {
-            val  intent= Intent(this,LoginActivity::class.java)
+            val  intent= Intent(this,HomeActivity::class.java)
             startActivity(intent)
             validate()
         }
@@ -48,5 +48,7 @@ class LoginActivity : AppCompatActivity() {
         if (Password.isBlank()){
             tilPassword.error="Password is required?"
         }
+
+
     }
 }
